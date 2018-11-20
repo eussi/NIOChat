@@ -1,8 +1,9 @@
 package top.eussi.nio;
 
+import top.eussi.constants.Constants;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.nio.channels.FileChannel;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
@@ -11,7 +12,7 @@ import java.nio.channels.SocketChannel;
  * Created by xueming.wang on 2018/11/20.
  */
 public class NIOClient {
-    private final InetSocketAddress serverAddress = new InetSocketAddress("localhost", 9999);
+    private final InetSocketAddress serverAddress = new InetSocketAddress("localhost", Constants.SERVER_PORT);
     private SocketChannel client;
     private Selector selector;
     public NIOClient() throws IOException {
@@ -22,5 +23,12 @@ public class NIOClient {
 
         selector = Selector.open();
         client.register(selector, SelectionKey.OP_READ);
+    }
+
+    public void start() {
+        //从服务器端读数据
+        new Thread(new ReaderRunnable(selector, Constants.BLANK)).start();
+        //从服务器端写数据
+        new Thread(new WriterRunnable(client, Constants.BLANK)).start();
     }
 }

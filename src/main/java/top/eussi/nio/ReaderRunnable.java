@@ -37,8 +37,8 @@ public class ReaderRunnable implements Runnable {
                 }
             }
         }
-        catch (IOException io){
-
+        catch (IOException e){
+            e.printStackTrace();
         }
     }
     private void deal(SelectionKey key) throws IOException {
@@ -55,7 +55,7 @@ public class ReaderRunnable implements Runnable {
             }
             //若系统发送通知名字已经存在，则需要换个昵称
             if(Constants.USER_EXIST.equals(content)) {
-                nickName = "";
+                nickName = Constants.BLANK;
             }
             System.out.println(content);
             key.interestOps(SelectionKey.OP_READ);

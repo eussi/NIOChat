@@ -21,9 +21,9 @@ public class WriterRunnable implements Runnable{
             Scanner scan = new Scanner(System.in);
             while(scan.hasNextLine()){
                 String line = scan.nextLine();
-                if("".equals(line)) continue; //过滤空消息
+                if(Constants.BLANK.equals(line)) continue; //过滤空消息
                 //第一次输入如果昵称为空，先给昵称赋值
-                if("".equals(nickName)) {
+                if(Constants.BLANK.equals(nickName)) {
                     nickName = line;
                     line = nickName + Constants.SEP;
                 } else {
@@ -35,7 +35,7 @@ public class WriterRunnable implements Runnable{
             }
             scan.close();
         }catch(Exception e){
-
+            e.printStackTrace();
         }
     }
 }

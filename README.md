@@ -9,3 +9,5 @@ use NIO to finish a chat
 3. run top.eussi.bootstrap.ClientStartup again
 > you need input your nickname as well. now, two clients can receive the same thing, like 'welcomett enter the chat room! Current number of people online :2'
 4. now you can run ClientStartup more, then Clients can chat with each other
+## pic
+![image](https://github.com/eussi/NIOChat/blob/master/src/main/resources/example.png)
